@@ -20,18 +20,18 @@ def automated_crypto_pull():
     
     tag = soup.find('span', class_ = 'sc-65e7f566-0 lsTl')
     
-    crypto_name = tag.contents[0].strip()         # Grab ONLY the first text node (ignores 'price')
+    crypto_name = tag.contents[0].strip()         
     
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
     driver.get("https://coinmarketcap.com/currencies/bitcoin/")
       
-    price_tag = driver.find_element(               # tell Selenium "go find ONE element on the page"
-        By.CSS_SELECTOR,                           # tell it *how* we are searching → using a CSS selector
-        '[data-test="text-cdp-price-display"]'     # this is the actual selector: find the HTML element with this data-test attribute
+    price_tag = driver.find_element(             
+        By.CSS_SELECTOR,                          
+        '[data-test="text-cdp-price-display"]'     
     )
     
-    price = price_tag.text                          # extract the visible text inside the span (example: "$87,644.11")
+    price = price_tag.text                        
                                   
     final_price = price.replace('$','')
     
